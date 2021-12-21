@@ -514,4 +514,10 @@ app.use(cookieSession({
 `event.stopImmediatePropagation()`
 * Stop the bubbling and prevent handlers on the current element from running as well
 
-**Capturing**
+
+### jQuery
+* Events/actions constantly occur on a webpage
+* Only notified of events if listening
+  * Waiting for the browser to communicate that a specific event has occurred
+    * Then tell the borwser how to react
+* **Event handler:** To specify what to do when an event occurs using function

@@ -1,6 +1,8 @@
 # **Methods Library for Noobies**
 
 ## **ARRAY**
+**`Array.concat()`**
+
 **`Array.filter()`**
 
 **`Array.forEach()`**
@@ -41,7 +43,9 @@ const arr = Array.from(arrLike);
 
 
 ## **OBJECT**
+**`Object.keys()`**
 
+**`Object.values()`**
 
 ## **STRING**
 **`String.substring()`**
