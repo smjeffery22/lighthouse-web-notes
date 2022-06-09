@@ -1,6 +1,8 @@
 # Difference Between Cookies, Sessions and Tokens
 
-## Cookies
+## Cookies (client side)
+* Used to remember information about the user in order to show the saved information/settings
+  * Adds statefulness to HTTP
 * How servers can put data on the user's browser to remember things about the user
   1. Browser makes a request to the server
   2. Server responses with the data the user is looking for
@@ -14,8 +16,13 @@
   2. Server gives a cookie that will remember the language
   3. Next time the user visits the page, the cookie will be sent to the server along with the request
   4. Server will give the user a page with the saved language
+* Limitations:
+  * Limited number of cookies that can be stored
+  * Size of each cookie is limited (info it can store)
 
-## Sessions
+## Sessions (server side)
+* Adding statefulness to HTTP
+  * Save and share information from one request to the next
 * HTTP, the protocol that we use to go to the website, is **stateless**
   * Meaning that every request that goes to the server is treated independently from the previous one
     * There is no link between requests and the server forgets everything after the request is finished
@@ -27,7 +34,7 @@
   * Cookies only exist in browser
 * Server will see that cookies are coming in with session ID
   * Server will check the session DB to check for the session ID
-    * Server does not know who the user is unitl this check is done
+    * Server does not know who the user is until this check is done
 * All the information about the user is on the server side in the DB
   * User only has the session ID
 * Server has to use the DB resources to keep track of all the users that are logged in

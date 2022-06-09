@@ -26,30 +26,30 @@
   * **path:** path on the server
   * **handler:** function executed when the route is matched
 
-```js
-    app.get('/', function (req, res) {
-      res.send('Hello World!')
-    })
+  ```js
+      app.get('/', function (req, res) {
+        res.send('Hello World!')
+      })
 
-    app.post('/', function (req, res) {
-      res.send('Got a POST request')
-    })
-```
+      app.post('/', function (req, res) {
+        res.send('Got a POST request')
+      })
+  ```
 
 * **Route Parameters**
-  * Route parameters are named URL segments that are used to capture the values specifed at their position in the URL
+  * Route parameters are named URL segments that are used to capture the values specified at their position in the URL
   * Captured values are populated in the `req.params` object
     * Route parameters as keys
 
-``` js
-Route path: /users/:userId/books/:bookId
-Request URL: http://localhost:3000/users/34/books/8989
-req.params: { "userId": "34", "bookId": "8989" }
+  ``` js
+  Route path: /users/:userId/books/:bookId
+  Request URL: http://localhost:3000/users/34/books/8989
+  req.params: { "userId": "34", "bookId": "8989" }
 
-app.get('/users/:userId/books/:bookId', function (req, res) {
-  res.send(req.params)
-})
-```
+  app.get('/users/:userId/books/:bookId', function (req, res) {
+    res.send(req.params)
+  })
+  ```
 
 * **Response Methods**
   * Methods on the response object (res) can send a response to the client, and terminate the request-response cycle
@@ -80,7 +80,7 @@ app.get('/users/:userId/books/:bookId', function (req, res) {
 
 ### **Embedded JavaScript (EJS)**
 * EJS is a template engine for Express
-* Use `views` direcoty for template files
+* Use `views` directory for template files
 * To set EJS as the view engine for Express:
 
 ```js  
@@ -97,14 +97,14 @@ app.get('/', function(req, res) {
 ```
 
 * `res.render`
-  * When 'template + variables' are specified in 'res.render', the variables are intepreted into the template
+  * When 'template + variables' are specified in 'res.render', the variables are interpreted into the template
     * The template returns html, which is then sent to the browser
       * Call this server side rendering
         * Took a template and rendered out a string of html from it
   * EJS automatically knows to look inside the 'views' directory for any template files (.ejs)
-* When sending variabls to an EJS template, they need to be inside an object
+* When sending variables to an EJS template, they need to be inside an object
   * `res.render('urls_index', templateVars);'
-    * passing templateVars to the templated called 'urls.index.ejs' file
+    * passing templateVars to the template called 'urls.index.ejs' file
     * Values stored in the templateVars object can be displayed in' urls.index.ejs' file
       * `<%= %>` syntax: to show the result of a code on the page (i.e. value of object)
       * `<% %>` syntax: to run code without displaying on the page (i.e. conditionals, loops)
@@ -196,12 +196,12 @@ app.get('/', function(req, res) {
   * Run `npm start`
 
 ### **Cookies**
-* An HTTP server can tell a client to remember certian keys-values ("cookies") using the `Set-Cookie` header in an HTTP response
+* An HTTP server can tell a client to remember certain keys-values ("cookies") using the `Set-Cookie` header in an HTTP response
 * In all subsequent HTTP requests from the client to the server, these keys-values are included in the Cookie header
-* HTTP cookies are small blocks of data created by a web sserver while a user is browsing a website
-  * Placed on the suer's computer or other device by the user's web browser
+* HTTP cookies are small blocks of data created by a web server while a user is browsing a website
+  * Placed on the user's computer or other device by the user's web browser
   * Cookies are placed on the device used to access a website
-* A cookie consits of the following components:
+* A cookie consists of the following components:
     1. Name
     2. Value
     3. Zero or more attributes (name-value pairs)
@@ -211,7 +211,7 @@ app.get('/', function(req, res) {
         * flags (such as Secure and HttpOnly)
 
 ### **cookie-parser**
-* Serves as Express middleware that faciliates working with cookies
+* Serves as Express middleware that facilitates working with cookies
   * Helps read the values from the cookies
 *`res.cookie(name, value [,options]):` set cookie name to value
   * value parameter may be a string or object converted to JSON
@@ -268,7 +268,7 @@ app.get('/', function(req, res) {
 ## **Day 4 Compass Notes**
 
 ### **Storing Passwords Securely**
-* Passwords should not be encrypted, they should is **hashed**
+* Passwords should not be encrypted, they should be **hashed**
 * **Encryption** is a **reversible process**
   * When passwords are encrypted, the secret key will be on the server
   * Passwords can be encrypted if the server is compromised
@@ -296,7 +296,7 @@ const hashedPassword = bcrypt.hashSync(password, 10); // hashes the password
     * encrypted cookies
     * abstraction that refers to user data, can be tracked in various ways:
       1. storing data in an encrypted cookie
-      2. sotring an id in an encrypted cookie with a session store on the server-side
+      2. storing an id in an encrypted cookie with a session store on the server-side
 * Encrypting cookie is one way to make the data in the cookie safe
   * *AES.encrypt* -> Encrypt the value using the AES cipher and some *secret key*
     * Set the result as the cookie (*digest*)
@@ -338,6 +338,8 @@ app.use(cookieSession({
 | Add      | Collection    | add a new member of the collection  | POST               |
 | Delete   | Member        | delete a member of the collection   | DELETE             |
 
+* *PUT* method replaces all current representations of the target resource with the request payload
+* *PATCH* method applies partial modifications to a resource
 
 
 ## **Day 5 Lecture Notes**
@@ -455,7 +457,7 @@ app.use(cookieSession({
 
 ### IDs vs. Classes
 * **ID:** Used to identify unique elements on a page
-  * Target elements by id using a selector with a hashtag prefix `#buy-now-main-btn`
+  * Target elements by id using a selector with a **hashtag prefix** `#buy-now-main-btn`
   * Either 0 or 1 elements that match this selector
   * An element can only have one ID
   * Ex. header, about
@@ -478,7 +480,11 @@ app.use(cookieSession({
 * When a webpage is loaded, the browser runs a process that creates a DOM in memory
   * DOM represents all of the HTML code on that page
   * Node/DOM Node: each HTML element
-* Transforms HTML text into a complete object structure
+* Transforms **HTML text** into a complete **object structure**
+* Allows JS to access the text content and elements of the website document as objects
+* Difference between DOM and HTML source code:
+  * DOM is modified by client-side JS
+  * Browser automatically fixes errors in the source code
 
 ### Event Propagation
 * The standard DOM Events describes 3 phases of event propagation:
@@ -499,8 +505,9 @@ app.use(cookieSession({
   </div>
 </form>
 ```
-  * If 'p' is clicked, onclicks runs on 'p' -> 'div' -> 'form'
+  * If 'p' is clicked, onclick runs on 'p' -> 'div' -> 'form'
   * This process is called **bubbling**
+    * Events "bubble" from the inner element up through parents like a bubble in the water
 
 `event.target`
 * The most deeply nested element that caused the event is called a **target** element
@@ -519,5 +526,5 @@ app.use(cookieSession({
 * Events/actions constantly occur on a webpage
 * Only notified of events if listening
   * Waiting for the browser to communicate that a specific event has occurred
-    * Then tell the borwser how to react
+    * Then tell the browser how to react
 * **Event handler:** To specify what to do when an event occurs using function

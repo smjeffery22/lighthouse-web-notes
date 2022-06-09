@@ -1,5 +1,14 @@
 # **Jeffery Park's LHL Week 4 Notes**
 
+* Flexbox
+* CSS
+* jQuery
+* DOM
+* AJAX
+* Responsive Design
+* Algorithms (Linear, Quadratic, Logarithmic, Big-O)
+* SQL
+
 ## **DAY 1 LECTURE NOTES**
 
 
@@ -62,25 +71,42 @@
 </section>
 ```
 
+* https://mastery.games/flexboxzombies/
+
 * **Parent Properties**
+  
   * **flex-direction**
     * Defines the direction that the children (a.k.a flex items) will appear in
-      * row / row-reverse
-      * column / column-reverse
+    * Default is set to row
+      * *row:* left to right
+      * *row-reverse:* right to left
+      * *column:* top to bottom
+      * *column-reverse:* bottom to top
     * Determines the *main axis* for the flex container
       * row: horizontal
       * column: vertical
+
   * **justify-content**
-    * Aligns flex items along the main axis
-      * flex-start / flex-end
-      * center
-      * space-between / space-evenly / space-around
+    * Aligns flex items *along the main axis*
+    * Default is set to flex-start
+      * *flex-start:* positions at the start of the axis
+      * *flex-end:* positions at the end of the axis
+      * *center:* positions at the center of the axis
+      * *space-between:* spread out contents with even space between them
+        * first and last content fixed at the beginning and the end of the axis
+      * *space-around:* even amount space around each contents
+      * *space-evenly*
+
   * **align-items**
-    * Aligns flex items along the cross axis
+    * Aligns flex items *along the cross axis*
     * How flex items as a whole are aligned within the flex container
-      * stretch
-      * flex-start / flex- end
-      * center
+      * *flex-start:* aligns items at the start of the cross axis
+        * top for horizontal
+        * left for vertical
+      * *flex-end:* aligns items at the end of the cross axis
+      * *stretch:* stretches the items along the cross axis
+      * *center:* center the items along the cross axis
+
   * **flex-wrap**
     * Specifies whether flex items are forced on a single line or can be wrapped on multiple lines
       * nowrap (default)
@@ -97,24 +123,67 @@
       * space-between / space-around
 
 * **Child Properties**
+
+  * **align-self**
+    * *Overrides the 'align-items' value*
+    * Aligns *individual flex items within the content* along the cross axis (similar to align-items)
+    * Need to *specify children element*
+      * flex-start
+      * flex-end
+      * stretch
+      * center
+      * baseline
+      
+  * **flex-grow**
+    * Dictates how much space a flex item should take up
+    * *Overwrites Justify-content is ignored*
+    * Setting flex-grow to *1* makes items *grow to fill the available space*
+      * In the *same direction* along the *main-axis*
+      * flex-grow of *0* is default size
+    * Using multiple flex-grow can set *ratio*
+      * i.e. 2 : 1 ratio to fill the space
+        * flex-grow: 2 and flex-grow: 1
+    * *Tip*
+      * Set flex-grow to 1 for all items
+      * Set flex-grow to 0 for any items that do not need to grow
+
+  * **flex-shrink**
+    * Starts shrinking *once the containing space is too small* to fit all the items
+    * Uses *ratios* to control how quickly each item shrinks
+    * If all items are shrinking evenly, number does not matter
+    * flex-shrink of 0 does not shrink the item
+
+  * **flex-basis**
+    * Sets the initial size of the flex item before growing/shrinking happens
+      * *If the items runs out of space, items will shrink according to their flex-shrink ratio*
+      * *If extra space, can expand to fill according to their flex-grow ratios*
+    * Improved version of *width* and *height* depending on flex-direction
+    * *Overwrites width and height*
+    * *min-width* acts as a *lower-limit* of flex-basis
+      * same applies for min-height
+    * *max-width* acts as an *upper-limit* for flex-basis
+      * same applies for min-height
+      ```
+      // flex-basis set to 300px
+      flex-basis: 100px;
+      min-width: 300px;
+
+      // flex-basis set to 100px
+      flex-basis: 400px;
+      max-width: 100px;
+      ```
+    * Can also use *%*
+    * Not setting flex-basis <=> flex-basis: auto
+      * Uses the width
+
   * **order**
     * Controls the order elementd appear
     * Default value is 0
-  * **align-self**
-    * Aligns flex items along the cross axis, overriding the 'align-items' value
-      * stretch
-      * flex-start / flex-end
-      * center
-      * baseline
-  * **flex-grow**
-    * Dictates how much space a flex item should take up
-  * **flex-shrink**
-    * 
 
 
 ### CSS FUNDAMENTALS
 * CSS codes are made of static rules
-  * Each rule takes one or more selectors and gives spㄷcific values to a number of visual properties
+  * Each rule takes one or more selectors and gives specific values to a number of visual properties
   * Properties are then applied to the page elements indicated by the selectors
 
 * **Selectors**
@@ -139,7 +208,7 @@
 
 * **Precedence or Cascade**
   * An element may be targeted by multiple selectors and may have a property set on it in more than once
-  * Rules with more specific selector take prescedence over a less specific one
+  * Rules with more specific selector take precedence over a less specific one
     * Rule occurring later in the stylesheet overwrites a previous one
 
 * **Specificity**
@@ -483,10 +552,10 @@ $(() => {
       * '_variables'
   * `CHECK NOTES`
 * **@extend**
-  * Wehn you hae two or more elements that have very similar styles, you could style one and use it as the basis for the other element
+  * When you hae two or more elements that have very similar styles, you could style one and use it as the basis for the other element
 * **Mixins**
   * Like a function that returns a group of styles
-  * Can be included in any other stlye by using `@include`
+  * Can be included in any other style by using `@include`
 * **Variables and Imports are very useful**
 
 
@@ -533,6 +602,8 @@ To disable viewport zooming, add the following to  every single web page created
 ### ALGORITHMS
 * An algorithm is a set of instructions or steps for accomplishing a specific task
 * In computer science, it is any piece of **code that performs a certain task or solves a particular problem**
+* Running time of algorithm as a function of the size of its input
+  * **Rate of Growth:** how fast a function grows with the input size
 
 `Algorithm Complexity`
 * How fast or slow a particular algorithm is
@@ -574,11 +645,12 @@ console.log(result); // 1
 ```
 
 `Linear vs. Logarithmic Algorithms`
-* **Binary Search** is a very common algorithm used to search for something in a set of *ordered data*
+* **Binary Search** is a very common algorithm used to search for something in a set of *ordered (sorted) data*
   * Guessing a number from 1 to 15, start guessing from the middle and halving until the number is found
     * Total iteration to find a number:
       * 'log2(total-array-size) = x' <=> '2^x = total-array-size'
         * **'x + 1' times**
+        ![log formula](https://cdn.kastatic.org/googleusercontent/CfdIRZu_iMA_DFp7EilcK9igLFA42jd2hksGilRMBdINxoLKxj2LAWCjQxvj8m9E3Ik6tmVfPAFIx4whUTPp-KZw)
     * Everytime a number is checked, the remaining numbers are cut in half
       * Loop will run **log2 n** times instead of n times, where n is the size of array
   * **Linear Search** is searching from the beginning in order (i.e. from 1 to 15 until the number is found)
@@ -598,9 +670,11 @@ console.log(result); // 1
 !['Linear vs. Qaudratice'](https://i.imgur.com/HCFQmST.png)
 
 ### BIG O NOTATION
-* When determinig the efficiency of an algorithm, how the algorithm's run time scales as a whole is more of a concern
+* When determining the efficiency of an algorithm, how the algorithm's run time scales as a whole is more of a concern
   * As opposed to the total number of individual steps
+  * How code *slows* as data *grows*
   * **Big O Notation**
+    * Able to analyze algorithms and know what to choose when needed
 * Big O notation describes how the number of steps in an **algorithm scales relative to its input**
   * Written as `0()`
 * 3 main things to remember when evaluating an algorithm using Big O notation:
@@ -610,9 +684,11 @@ console.log(result); // 1
   3. Drop constant terms
       * 'n^3' determines the main curve in '(n^3) / 2' or '(n^3) * 2'
       * **Not** interested in **exact running time** of an algorithm
+  4. Different inputs => Different variables
+      * For different arrays => 'a * b'
   * Above can be written in Big O notation
-    * `O(n^2)` and `O(n^3)`
-      * 'O n squared' and 'O n cubed'
+    * `O(n^2)`, `O(n^3)` and O(a*b)
+      * 'O n squared', 'O n cubed' and 'O of a times b'
   * Non-dominant and constant terms do not affect the overall shape of the graph
 * **Constant O(1)**
   * **Constant Time:** An algorithm that will always take the same amount of time to execute
@@ -633,17 +709,51 @@ console.log(result); // 1
   * Logarithmic algorithms run in `O(log n)`
 * Above are **time complexity**
 
+![Big O Time Complexity](https://miro.medium.com/max/700/1*FkQzWqqIMlAHZ_xNrEPKeA.png)
+
+**``Determining Big O``**
+* Identify your code
+  * What pirce of code you are talking about
+* Identify N
+  * What is it measuring
+* Count the steps in a **typical** run
+* Keep the most significant part
+  * Get rid of lower-ordered components and coefficients
+
+*Amortization*
+  * Long-term averaging over operation
+  * Operations can take different times
+
+### Asymptotic Notation
+* When the constant coefficients and the less significant terms are dropped
+  * Big-Θ (Theta) notation
+    * Tightly bound by a function with two different constants (i.e. k1(f(n)) and k2(f(n))
+    ![big-theta](https://cdn.kastatic.org/ka-perseus-images/2bdc25c7eda8486d05b8031c5a63535684ecb5a1.png)
+  * Big-O notation
+    * Asymptotic upper bounds
+    ![big-theta](https://cdn.kastatic.org/ka-perseus-images/501211c02f4c6765f60f23842450e1151cfd9c89.png)
+  * Big-Ω (Omega) notation
+    * Algorithm takes at least a certain amount of time
+    * Asymptotic lower bounds
+    ![big-theta](https://cdn.kastatic.org/ka-perseus-images/c02e6916d15bacae7a936381af8c6e5a0068f4fd.png)
+* a^n: exponential
+* n^b: polynomial
+* In logarithmic functions, the lesser the base, the faster the function grows
+
+![log change of base](https://cdn.kastatic.org/googleusercontent/2f5orUa3ApJkpedmwZ_lev_3Hlm0YEFzEf3YfMyN8Y-wXJoPD_moC-TCvJJXaKbs7rFX0c_h2swRxGLNnI2XknzgEg)
+
+
 
 ## **DAY WE COMPASS NOTES**
 
-### RAELATIONAL DATABASE
+### RELATIONAL DATABASE
 * Data is stored in database in an organized way in tables
   * **Search** data and **retrieve** when needed
   * Data can be created, retrieved, updated and deleted (CRUD) from a table
-* Rational databse is a type of database that organizes data into tables and links them based on defined relationships
-  * Allows to retrieve and combine data from one or more talbes with a single query
+* Rational database is a type of database that organizes data into tables and links them based on defined relationships
+  * Allows to retrieve and combine data from one or more tables with a single query
 
-* Repetitive data is problematic and makes the CRUS operations more challenging
+* Repetitive data is problematic and makes the CRUD operations more challenging
   * Longer to go through data
   * Remove repetitive data across columns (**first normal form (1NF)**)
   * Remove repetitive data across rows (**second normal form (2NF)**)
@@ -661,7 +771,7 @@ console.log(result); // 1
 ### ENTITY RELATIONSHIP DIAGRAM (ERD)
 * Graphical representation of the data requirements for a database
   * **Entity**
-    * Represents a person, palce or thing that you want tot rack in a database
+    * Represents a person, place or thing that you want to track in a database
     * Become a table in the database
     * Each occurrence of the entity is an 'entity instance'
       * Rows
@@ -686,3 +796,6 @@ console.log(result); // 1
 * Crow's Foot Notation
 !['Crow's Foot Notation Diagram'](https://res.cloudinary.com/practicaldev/image/fetch/s--Sf6yoYk6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://i.ibb.co/qjw6dMn/Crow-Notation-Chart.png)
 
+
+### SQL (STRUCTURED QUERY LANGUAGE)
+* SQL is a programming language used to interact with relational databases
